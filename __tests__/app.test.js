@@ -10,4 +10,9 @@ describe('stringCalculator' , () => {
         expect(stringCalculator('1,2')).toBe(3);
     })
 
+    test('it return the sum if new line is used in the string', () => {
+        expect(stringCalculator('1,2,\n3')).toBe(6);
+        expect(stringCalculator('\n2,\n3')).toBe(5);
+    })
+
 })
