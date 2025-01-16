@@ -7,6 +7,7 @@ describe('stringCalculator' , () => {
 
     test('it return the sum of all positive numbers in the string', () => {
         expect(stringCalculator('1')).toBe(1);
+        expect(stringCalculator('1,2')).toBe(3);
     })
 
 })
