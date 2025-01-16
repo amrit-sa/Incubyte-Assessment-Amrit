@@ -1,6 +1,8 @@
 const stringCalculator = (inputString) => {
-    let sum = 0;
-    if(inputString.length === 0 ) return sum;
+    let delimeter = ','
+    const numArray = inputString.split(delimeter).map(Number);
+
+    return numArray.reduce((acc,cur) => acc + cur, 0);
 }
 
 export default stringCalculator
