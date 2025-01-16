@@ -19,4 +19,10 @@ describe('stringCalculator' , () => {
         expect(() => stringCalculator('1,2,-3')).toThrow('Negative numbers not allowed: -3');
         expect(() => stringCalculator('2,-3,-4')).toThrow('Negative numbers not allowed: -3, -4');
     })
+
+    test('it correctly calculate sum when using delimeter', () => {
+        expect(stringCalculator('//;1;2;3')).toBe(6);
+        expect(stringCalculator('//!5!10')).toBe(15);
+    })
+
 })
