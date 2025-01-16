@@ -1,4 +1,5 @@
 import stringCalculator from "../app";
+import { generateErrorLog } from "../helper";
 
 describe('stringCalculator' , () => {
     test('it handles empty string', () => {
@@ -16,13 +17,19 @@ describe('stringCalculator' , () => {
     })
 
     test('it throws exception if passed negative numbers', () => {
-        expect(() => stringCalculator('1,2,-3')).toThrow('Negative numbers not allowed: -3');
-        expect(() => stringCalculator('2,-3,-4')).toThrow('Negative numbers not allowed: -3, -4');
+        expect(() => stringCalculator('1,2,-3')).toThrow(generateErrorLog([-3]));
+        expect(() => stringCalculator('2,-3,-4')).toThrow(generateErrorLog([-3, -4]));
     })
 
     test('it correctly calculate sum when using delimeter', () => {
         expect(stringCalculator('//;1;2;3')).toBe(6);
         expect(stringCalculator('//!5!10')).toBe(15);
+    })
+
+    test('it behaves correcly with all combined scenarios,negative numbers, new line and delimeter', () => {
+        expect(stringCalculator('//;1;\n2;3;\n4')).toBe(10);
+        expect(() => stringCalculator('//;1;2;-3')).toThrow(generateErrorLog([-3]));
+        expect(() => stringCalculator('//=\n2=\n-3=\n-4')).toThrow(generateErrorLog([-3, -4]));
     })
 
 })
