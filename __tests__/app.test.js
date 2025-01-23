@@ -32,7 +32,7 @@ describe('stringCalculator' , () => {
         expect(() => stringCalculator('//=\n2=\n-3=\n-4')).toThrow(generateErrorLog([-3, -4]));
     })
 
-    test.only('it throws exception if no numbers found in the string', () => {
+    test('it throws exception if no numbers found in the string', () => {
         expect(() => stringCalculator('a,b,c')).toThrow('Invalid characters found:a,b,c');
         expect(() => stringCalculator('1,2,a,d,g')).toThrow('Invalid characters found:a,d,g');
     })
