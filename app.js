@@ -1,6 +1,6 @@
-import { generateErrorLog } from "./helper";
+import { generateErrorLog, generateInvalidCharsError } from "./helper";
 
-const stringCalculator = (inputString) => {
+const add = (inputString) => {
 
     let delimeter = ','
 
@@ -9,8 +9,20 @@ const stringCalculator = (inputString) => {
         delimeter = inputString.charAt(2);
     }
 
+    
     // Create an Array of only valid numbers keeping negative numbers as it is.
-    const numArray = inputString.split(delimeter).map(Number).filter(n => !isNaN(n))
+    const strArray = inputString.split(delimeter);
+    
+    // a,b,c
+    // [a,b,c]
+   
+    const invalidChars = strArray.filter(char => isNaN(Number(char)));
+    if(invalidChars.length){
+        throw new Error(generateInvalidCharsError(invalidChars));
+    }
+
+
+    const numArray = strArray.map(Number).filter(n => !isNaN(n))
     
     // Throw exception error if there is/are negative number/s.
     const negativeNumbers = numArray.filter(n => n < 0);
@@ -22,4 +34,4 @@ const stringCalculator = (inputString) => {
     return numArray.reduce((acc,cur) => acc + cur, 0);
 }
 
-export default stringCalculator
+export default add
